@@ -9,7 +9,7 @@ const ACCOUNTS = [
     amount: "$1",
     empty: true,
     name: "Jonas",
-    surname: "Jonaits",
+    surname: "Jonaitis",
   },
   {
     id: "0002",
@@ -23,7 +23,7 @@ const ACCOUNTS = [
     amount: "$2",
     empty: false,
     name: "Maryte",
-    surname: "Bubke",
+    surname: "Bickute",
   },
   {
     id: "0004",

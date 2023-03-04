@@ -20,7 +20,21 @@
   padding: 3px 10px;
 }
 
+.header-row {
+  background-color: darkslategrey;
+}
+
 input {
   margin: 10px;
   padding: 10px;
+}
+
+table, tr, th, td {
+  margin: 3px 10px;
+  padding: 3px 10px;
+}
+
+tbody tr td:last-child,
+tbody tr td:nth-child(3) {
+  text-align: right;
 }
