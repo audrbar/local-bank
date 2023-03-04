@@ -1,13 +1,11 @@
 function AccountRow({ account }) {
-  const name = account.full ? account.name :
-    <span style={{ color: 'red' }}>
-      {account.name}
-    </span>;
 
   return (
     <tr>
-      <td>{name}</td>
-      <td>{account.price}</td>
+      <td>{account.surname}</td>
+      <td>{account.name}</td>
+      <td>{account.id}</td>
+      <td>{account.amount}</td>
     </tr>
   );
 }

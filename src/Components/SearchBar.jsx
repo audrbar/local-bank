@@ -1,11 +1,11 @@
-function SearchBar({ filterText, onFilterTextChange }) {
+function SearchBar({ searchTerm, onSearchTermChange, isEmpty, setIsEmpty }) {
     return (
         <form>
             <input
             type="text"
-            value={filterText}
+            value={searchTerm}
             placeholder="Search..."
-            onChange={(e) => onFilterTextChange(e.target.value)}
+            onChange={(e) => onSearchTermChange(e.target.value)}
             />
             <label>
                 <input type="checkbox"/>

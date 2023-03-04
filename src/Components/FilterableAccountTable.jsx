@@ -2,26 +2,26 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import AccountTable from "./AccountTable";
 
-function FilterableProductTable({ accounts }) {
+function FilterableAccountTable({ accounts }) {
 
-  const [filterText, setFilterText] = useState('');
-  const [full, setFull] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [isEmpty, setIsEmpty] = useState(false);
 
   return (
     <div>
       <SearchBar
-      filterText={filterText}
-      full={full}
-      onFilterTextChange={setFilterText}
-      onFullChange={setFull}
+      searchTerm={searchTerm}
+      isEmpty={isEmpty}
+      onSearchTermChange={setSearchTerm}
+      onIsEmptyChange={setIsEmpty}
       />
       <AccountTable
       accounts={accounts}
-      filterText={filterText}
-      full={full}
+      searchTerm={searchTerm}
+      isEmpty={isEmpty}
       />
     </div>
   );
 }
 
-  export default FilterableProductTable;
+  export default FilterableAccountTable;

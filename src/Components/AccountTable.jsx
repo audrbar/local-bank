@@ -1,32 +1,24 @@
-import AccountCategoryRow from "./AccountCategoryRow";
 import AccountRow from "./AccountRow";
 
 function AccountTable({ accounts }) {
   const rows = [];
-  let lastCategory = null;
 
   accounts.forEach((account) => {
-    if (account.category !== lastCategory) {
-      rows.push(
-        <AccountCategoryRow
-          category={account.category}
-          key={account.category} />
-      );
-    }
     rows.push(
       <AccountRow
         account={account}
-        key={account.name} />
+        key={account.id} />
     );
-    lastCategory = account.category;
   });
 
   return (
     <table>
       <thead>
         <tr>
+          <th>Surname</th>
           <th>Name</th>
-          <th>Price</th>
+          <th>Account No</th>
+          <th>Amount</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
