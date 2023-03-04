@@ -10,7 +10,7 @@ function AccountTable({ accounts, searchTerm, isEmpty }) {
     ) {
       return;
     }
-    if (isEmpty) {
+    if (isEmpty && account.empty) {
       return;
     }
     rows.push(

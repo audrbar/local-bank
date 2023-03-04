@@ -66,6 +66,7 @@ function App() {
       <AccountTable
         accounts={ACCOUNTS}
         searchTerm={searchTerm}
+        onIsEmptyChange={setIsEmpty}
         isEmpty={isEmpty}
       />
     </div>

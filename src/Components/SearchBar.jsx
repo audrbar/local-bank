@@ -1,4 +1,4 @@
-function SearchBar({ searchTerm, onSearchTermChange, isEmpty, setIsEmpty }) {
+function SearchBar({ searchTerm, onSearchTermChange, onIsEmptyChange,isEmpty }) {
     return (
         <form className="searchbar">
             <input
@@ -8,7 +8,11 @@ function SearchBar({ searchTerm, onSearchTermChange, isEmpty, setIsEmpty }) {
             onChange={(e) => onSearchTermChange(e.target.value)}
             />
             <label>
-                <input type="checkbox"/>
+                <input
+                type="checkbox"
+                checked={isEmpty}
+                onChange={(e) => onIsEmptyChange(e.target.checked)}
+                />
                 {' '}
                 Show Full Accounts
             </label>
