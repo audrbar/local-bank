@@ -1,9 +1,5 @@
-.App {
-  text-align: center;
-}
-
-.App-header {
-  background-color: #282c34;
+.container {
+  background-color: #374257;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -13,3 +9,18 @@
   color: white;
 }
 
+.header {
+  margin: 5px;
+  color: whitesmoke;
+}
+
+.searchbar {
+  background-color: cadetblue;
+  margin: 10px;
+  padding: 3px 10px;
+}
+
+input {
+  margin: 10px;
+  padding: 10px;
+}

@@ -8,7 +8,7 @@ function FilterableAccountTable({ accounts }) {
   const [isEmpty, setIsEmpty] = useState(false);
 
   return (
-    <div>
+    <div className="container">
       <SearchBar
       searchTerm={searchTerm}
       isEmpty={isEmpty}

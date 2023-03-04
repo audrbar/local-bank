@@ -1,5 +1,7 @@
-// import "./App.css";
-import FilterableAccountTable from "./Components/FilterableAccountTable";
+import "./App.css";
+import { useState } from "react";
+import SearchBar from "./Components/SearchBar";
+import AccountTable from "./Components/AccountTable";
 
 const ACCOUNTS = [
   {
@@ -47,12 +49,25 @@ const ACCOUNTS = [
 ];
 
 function App() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [isEmpty, setIsEmpty] = useState(false);
+
   return (
-    <div className="App">
-      <header className="App-header">
+    <div className="container">
+      <header className="header">
         <h1>Kija Bank</h1>
       </header>
-      <FilterableAccountTable accounts={ACCOUNTS} />
+      <SearchBar
+        searchTerm={searchTerm}
+        isEmpty={isEmpty}
+        onSearchTermChange={setSearchTerm}
+        onIsEmptyChange={setIsEmpty}
+      />
+      <AccountTable
+        accounts={ACCOUNTS}
+        searchTerm={searchTerm}
+        isEmpty={isEmpty}
+      />
     </div>
   );
 }
