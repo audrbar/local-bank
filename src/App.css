@@ -1,23 +1,33 @@
 .container {
   background-color: #374257;
+  max-width: 900px;
   min-height: 100vh;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
 }
 
 .header {
-  margin: 5px;
-  color: whitesmoke;
+  padding: 15px;
+  background-color: lightslategray;
+  width: 100%;
+}
+
+.header h1 {
+  background-color: lightslategray;
 }
 
 .searchbar {
+  display: flex;
+  justify-content: space-between;
   background-color: cadetblue;
   margin: 10px;
   padding: 3px 10px;
+  width: 100%;
 }
 
 .header-row {
@@ -27,6 +37,16 @@
 input {
   margin: 10px;
   padding: 10px;
+  border: none;
+  background-color: white;
+}
+
+label {
+  background-color: cadetblue;
+}
+
+input:active {
+  border: none;
 }
 
 table, tr, th, td {
@@ -37,4 +57,40 @@ table, tr, th, td {
 tbody tr td:last-child,
 tbody tr td:nth-child(3) {
   text-align: right;
+}
+
+.add-account {
+  display: flex;
+  justify-content: space-between;
+  background-color: cadetblue;
+  margin: 10px;
+  padding: 3px 10px;
+  width: 100%;
+}
+
+.add-account h2 {
+  background-color: cadetblue;
+}
+
+button {
+  display: inline-block;
+  user-select: none;
+  padding: 5px;
+  margin: 5px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-size: 1.1em;
+  border: none;
+  outline: none;
+  text-align: center;
+  transition: all 0.2s;
+  text-transform: uppercase;
+  background-color: darkslategrey;
+  cursor: pointer;
+  color: white
+}
+
+button:hover {
+  background-color:rgb(56, 111, 111);
 }

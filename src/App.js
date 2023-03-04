@@ -1,46 +1,48 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SearchBar from "./Components/SearchBar";
 import AccountTable from "./Components/AccountTable";
+import Create from "./Components/Create";
 
+const KEY = "Accounts";
 const ACCOUNTS = [
   {
-    id: "0001",
+    number: "0001",
     amount: "$1",
-    empty: true,
+    empty: false,
     name: "Jonas",
     surname: "Jonaitis",
   },
   {
-    id: "0002",
+    number: "0002",
     amount: "$1",
     empty: true,
     name: "Petras",
     surname: "Petraitis",
   },
   {
-    id: "0003",
+    number: "0003",
     amount: "$2",
     empty: false,
     name: "Maryte",
     surname: "Bickute",
   },
   {
-    id: "0004",
+    number: "0004",
     amount: "$2",
     empty: true,
     name: "Joana",
     surname: "Petre",
   },
   {
-    id: "0005",
+    number: "0005",
     amount: "$4",
     empty: false,
     name: "Marija",
     surname: "Skaite",
   },
   {
-    id: "0006",
+    number: "0006",
     amount: "$1",
     empty: true,
     name: "Vidas",
@@ -51,11 +53,19 @@ const ACCOUNTS = [
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [isEmpty, setIsEmpty] = useState(false);
+  const [createAccount, setCreateAccount] = useState(null);
+
+  useEffect(() => {
+    if (null === createAccount) {
+      return;
+    }
+    Create(KEY, createAccount);
+  }, [createAccount]);
 
   return (
     <div className="container">
       <header className="header">
-        <h1>Kija Bank</h1>
+        <h1>Kija International Bank</h1>
       </header>
       <SearchBar
         searchTerm={searchTerm}
@@ -68,6 +78,10 @@ function App() {
         searchTerm={searchTerm}
         onIsEmptyChange={setIsEmpty}
         isEmpty={isEmpty}
+      />
+      <Create
+        createAccount={createAccount}
+        onCreateAccountChange={setCreateAccount}
       />
     </div>
   );

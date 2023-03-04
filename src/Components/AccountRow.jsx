@@ -4,7 +4,7 @@ function AccountRow({ account }) {
     <tr>
       <td>{account.surname}</td>
       <td>{account.name}</td>
-      <td>{account.id}</td>
+      <td>{account.number}</td>
       <td>{account.amount}</td>
     </tr>
   );
