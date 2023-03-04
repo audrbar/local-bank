@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Create({createAccount, setCreateAccount, onCreateAccountChange}) {
+function Create({ setCreateAccount }) {
 
     const [number, setNumber] = useState(1);
     const [surname, setSurname] = useState('');
@@ -17,6 +17,7 @@ function Create({createAccount, setCreateAccount, onCreateAccountChange}) {
                 empty,
                 amount: parseInt(amount)
             });
+        // Return Default values    
         setNumber(1);
         setSurname('');
         setName('');
@@ -29,15 +30,15 @@ function Create({createAccount, setCreateAccount, onCreateAccountChange}) {
         <h2>Add Account</h2>
         <input
         type="text"
-        value={surname}
-        placeholder="Surname..."
-        onChange={(e) => setCreateAccount(e.target.value)}
+        value={name}
+        placeholder="Name..."
+        onChange={(e) => setName(e.target.value)}
         />
         <input
         type="text"
-        value={name}
-        placeholder="Name..."
-        onChange={(e) => setCreateAccount(e.target.value)}
+        value={surname}
+        placeholder="Surname..."
+        onChange={(e) => setSurname(e.target.value)}
         />
         <button onClick={create}>add</button>
     </div>

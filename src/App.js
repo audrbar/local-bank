@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import SearchBar from "./Components/SearchBar";
 import AccountTable from "./Components/AccountTable";
 import Create from "./Components/Create";
+import { create } from "./localStorage";
 
 const KEY = "Accounts";
 const ACCOUNTS = [
@@ -59,7 +60,7 @@ function App() {
     if (null === createAccount) {
       return;
     }
-    Create(KEY, createAccount);
+    create(KEY, createAccount);
   }, [createAccount]);
 
   return (
@@ -79,10 +80,7 @@ function App() {
         onIsEmptyChange={setIsEmpty}
         isEmpty={isEmpty}
       />
-      <Create
-        createAccount={createAccount}
-        onCreateAccountChange={setCreateAccount}
-      />
+      <Create setCreateAccount={setCreateAccount} />
     </div>
   );
 }

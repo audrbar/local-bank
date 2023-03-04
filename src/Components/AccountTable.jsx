@@ -16,7 +16,7 @@ function AccountTable({ accounts, searchTerm, isEmpty }) {
     rows.push(
       <AccountRow
         account={account}
-        key={account.id} />
+        key={account.number} />
     );
   });
 
