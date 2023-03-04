@@ -2,7 +2,6 @@ import { useState } from 'react';
 
 function Create({ setCreateAccount }) {
 
-    const [number, setNumber] = useState(1);
     const [surname, setSurname] = useState('');
     const [name, setName] = useState('');
     const [empty, setEmpty] = useState(false);
@@ -11,14 +10,12 @@ function Create({ setCreateAccount }) {
     const create = _ => {
         setCreateAccount(
             {
-                number: parseInt(number),
                 surname,
                 name,
                 empty,
                 amount: parseInt(amount)
             });
         // Return Default values    
-        setNumber(1);
         setSurname('');
         setName('');
         setEmpty(true);

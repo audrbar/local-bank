@@ -1,9 +1,14 @@
 import AccountRow from "./AccountRow";
 
-function AccountTable({ accounts, searchTerm, isEmpty }) {
+function AccountTable({ accountList, setDeleteAccount, searchTerm, isEmpty }) {
   const rows = [];
 
-  accounts.forEach((account) => {
+  accountList.forEach((account) => {
+    if (null === accountList) {
+      return (
+        <h1>LOADING...</h1>
+      )
+    }
     if (account.surname.toLowerCase().indexOf(
         searchTerm.toLowerCase()
       ) === -1
@@ -16,7 +21,7 @@ function AccountTable({ accounts, searchTerm, isEmpty }) {
     rows.push(
       <AccountRow
         account={account}
-        key={account.number} />
+        key={account.id} />
     );
   });
 
@@ -28,6 +33,7 @@ function AccountTable({ accounts, searchTerm, isEmpty }) {
           <th>Name</th>
           <th>Account No</th>
           <th>Amount</th>
+          <th>Account</th>
         </tr>
       </thead>
       <tbody>{rows}</tbody>
