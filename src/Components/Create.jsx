@@ -24,17 +24,17 @@ function Create({ setCreateAccount }) {
 
     return (
     <div className='add-account'>
-        <h2>Add Account</h2>
+        <h2>Add an account</h2>
         <input
         type="text"
         value={name}
-        placeholder="Name..."
+        placeholder="Enter a name..."
         onChange={(e) => setName(e.target.value)}
         />
         <input
         type="text"
         value={surname}
-        placeholder="Surname..."
+        placeholder="Enter a surname..."
         onChange={(e) => setSurname(e.target.value)}
         />
         <button onClick={create}>add</button>

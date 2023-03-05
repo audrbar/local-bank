@@ -1,39 +1,48 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import SearchBar from "./Components/SearchBar";
-import AccountTable from "./Components/AccountTable";
 import Create from "./Components/Create";
-import { create, destroy, read } from "./localStorage";
+import { create, destroy, edit, read } from "./localStorage";
+import AccountList from "./Components/AccountList";
 
 const KEY = "Accounts";
 
 function App() {
-  const [actualAccountList, setActualAccountList] = useState(Date.now());
+  const [updatedAccountList, setUpdatedAccountList] = useState(Date.now());
   const [searchTerm, setSearchTerm] = useState("");
   const [isEmpty, setIsEmpty] = useState(false);
   const [createAccount, setCreateAccount] = useState(null);
   const [accountList, setAccountList] = useState([]);
   const [deleteAccount, setDeleteAccount] = useState(null);
+  const [editAccount, setEditAccount] = useState(null);
 
   useEffect(() => {
     if (null === createAccount) {
       return;
     }
     create(KEY, createAccount);
-    setActualAccountList(Date.now());
+    setUpdatedAccountList(Date.now());
   }, [createAccount]);
 
   useEffect(() => {
     setAccountList(read(KEY));
-  }, [actualAccountList]);
+  }, [updatedAccountList]);
 
   useEffect(() => {
     if (null === deleteAccount) {
       return;
     }
     destroy(KEY, deleteAccount.id);
-    setActualAccountList(Date.now());
+    setUpdatedAccountList(Date.now());
   }, [deleteAccount]);
+
+  useEffect(() => {
+    if (null === editAccount) {
+      return;
+    }
+    edit(KEY, editAccount, editAccount.id);
+    setUpdatedAccountList(Date.now());
+  }, [editAccount]);
 
   return (
     <div className="container">
@@ -47,12 +56,14 @@ function App() {
         onSearchTermChange={setSearchTerm}
         onIsEmptyChange={setIsEmpty}
       />
-      <AccountTable
+      <AccountList
         accountList={accountList}
         searchTerm={searchTerm}
         onIsEmptyChange={setIsEmpty}
         setDeleteAccount={setDeleteAccount}
+        setEditAccount={setEditAccount}
         isEmpty={isEmpty}
+        onEditAccountChange={setEditAccount}
       />
     </div>
   );

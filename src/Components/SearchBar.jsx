@@ -14,7 +14,7 @@ function SearchBar({ searchTerm, onSearchTermChange, onIsEmptyChange,isEmpty }) 
                 onChange={(e) => onIsEmptyChange(e.target.checked)}
                 />
                 {' '}
-                Show Full Accounts
+                Show Not Empty Accounts Only
             </label>
         </form>
     );
