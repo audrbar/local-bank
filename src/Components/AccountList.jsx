@@ -1,17 +1,4 @@
-import Delete from "./Delete";
-import Edit from "./Edit";
-
 function AccountList({ accountList, setDeleteAccount, setEditAccount, searchTerm, isEmpty }) {
-
-//   if (account.surname.toLowerCase().indexOf(
-//     searchTerm.toLowerCase()
-//   ) === -1
-// ) {
-//   return;
-// }
-// if (isEmpty && account.empty) {
-//   return;
-// }
 
   return (
     <div className="accounts-list">
@@ -31,7 +18,7 @@ function AccountList({ accountList, setDeleteAccount, setEditAccount, searchTerm
             const includesSurname = surname.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
             return isEmpty ? includesSurname && amount > 0 : includesSurname;
           }).map((account) => (
-            <tr className="account-row">
+            <tr className="account-row" key={account.id}>
               <td>{account.surname}</td>
               <td>{account.name}</td>
               <td>{account.id}</td>

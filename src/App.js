@@ -34,12 +34,14 @@ function App() {
   return (
     <div className="container">
       <header className="header">
-        <h1>
-          Kija International Bank. Total:{" "}
+        <h1>Kija Bank</h1>
+        <h3>
+          Cash Total:{" " + "$"}
           {accountList
             .map((item) => item.amount)
             .reduce((acc, curr) => acc + curr, 0)}
-        </h1>
+        </h3>
+        <h3>Clients Total: {accountList.length}</h3>
       </header>
       <Create setCreateAccount={handleCreate} />
       <SearchBar
