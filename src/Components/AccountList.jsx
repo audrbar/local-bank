@@ -1,4 +1,5 @@
-import AccountRow from "./AccountRow";
+import Delete from "./Delete";
+import Edit from "./Edit";
 
 function AccountList({ accountList, setDeleteAccount, setEditAccount, searchTerm, isEmpty }) {
 
@@ -22,23 +23,33 @@ function AccountList({ accountList, setDeleteAccount, setEditAccount, searchTerm
             <th>Account No</th>
             <th>Amount</th>
             <th>Add Money</th>
-            <th>Pay Money</th>
             <th>Account</th>
           </tr>
         </thead>
-          { accountList.map((account) => (
-          <AccountRow
-            key={account.id}
-            account={account}
-            surname={account.surname}
-            name={account.name}
-            id={account.id}
-            amount={account.amount}
-            setDeleteAccount={setDeleteAccount}
-            setEditAccount={setEditAccount}
-            searchTerm={searchTerm}
-            isEmpty={isEmpty}
-          />))}
+            <tbody >
+          { accountList.filter(({ surname, amount }) => {
+            const includesSurname = surname.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
+            return isEmpty ? includesSurname && amount > 0 : includesSurname;
+          }).map((account) => (
+            <tr className="account-row">
+              <td>{account.surname}</td>
+              <td>{account.name}</td>
+              <td>{account.id}</td>
+              <td>{account.amount}</td>
+              <td>
+                <input
+                  type="number"
+                  value={account.amount}
+                  placeholder="Amount $?"
+                  onChange={(e) => setEditAccount({ ...account, amount: parseInt(e.target.value) })}
+                />
+                </td>
+             
+              <td>
+              <button onClick={() => setDeleteAccount(account.id)}>Delete</button></td>
+            </tr>
+          ))}
+          </tbody>
       </table>
     </div>
   );

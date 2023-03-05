@@ -4,22 +4,15 @@ function Create({ setCreateAccount }) {
 
     const [surname, setSurname] = useState('');
     const [name, setName] = useState('');
-    const [empty, setEmpty] = useState(false);
-    const [amount, setAmount] = useState(0);
 
     const create = _ => {
-        setCreateAccount(
-            {
+        setCreateAccount({
                 surname,
                 name,
-                empty,
-                amount: parseInt(amount)
             });
         // Return Default values    
         setSurname('');
         setName('');
-        setEmpty(true);
-        setAmount(0);
     }
 
     return (
@@ -28,12 +21,14 @@ function Create({ setCreateAccount }) {
         <input
         type="text"
         value={name}
+        required
         placeholder="Enter a name..."
         onChange={(e) => setName(e.target.value)}
         />
         <input
         type="text"
         value={surname}
+        required
         placeholder="Enter a surname..."
         onChange={(e) => setSurname(e.target.value)}
         />
