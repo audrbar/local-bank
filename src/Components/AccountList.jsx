@@ -26,9 +26,10 @@ function AccountList({ accountList, setDeleteAccount, setEditAccount, searchTerm
               <td>
                 <input
                   type="number"
+                  min="0"
                   value={account.amount}
                   placeholder="Amount $?"
-                  onChange={(e) => setEditAccount({ ...account, amount: parseInt(e.target.value) })}
+                  onChange={(e) => e.target.value >= 0 ? setEditAccount({ ...account, amount: parseInt(e.target.value) }) : null }
                 />
                 </td>
              
