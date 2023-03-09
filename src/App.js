@@ -1,58 +1,62 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SearchBar from "./Components/SearchBar";
-import AccountTable from "./Components/AccountTable";
 import Create from "./Components/Create";
-import { create, destroy, read } from "./localStorage";
+import { create, destroy, edit, read } from "./localStorage";
+import AccountList from "./Components/AccountList";
 
 const KEY = "Accounts";
 
 function App() {
-  const [actualAccountList, setActualAccountList] = useState(Date.now());
   const [searchTerm, setSearchTerm] = useState("");
-  const [isEmpty, setIsEmpty] = useState(false);
-  const [createAccount, setCreateAccount] = useState(null);
-  const [accountList, setAccountList] = useState([]);
-  const [deleteAccount, setDeleteAccount] = useState(null);
+  const [filterEmpty, setFilterEmpty] = useState(false);
+  const [accountList, setAccountList] = useState(read(KEY) || []);
 
-  useEffect(() => {
-    if (null === createAccount) {
-      return;
+  const handleDeleteById = (id) => {
+    const item = accountList.find((item) => item.id === id);
+    if (item.amount === 0) {
+      destroy(KEY, id);
+      setAccountList(read(KEY));
     }
-    create(KEY, createAccount);
-    setActualAccountList(Date.now());
-  }, [createAccount]);
+  };
 
-  useEffect(() => {
+  const handleCreate = (account) => {
+    create(KEY, { ...account, empty: true, amount: 0 });
     setAccountList(read(KEY));
-  }, [actualAccountList]);
+  };
 
-  useEffect(() => {
-    if (null === deleteAccount) {
-      return;
-    }
-    destroy(KEY, deleteAccount.id);
-    setActualAccountList(Date.now());
-  }, [deleteAccount]);
+  /** @param {import("./localStorage").Account} account */
+  const handleEdit = (account) => {
+    edit(KEY, account);
+    setAccountList(read(KEY));
+  };
 
   return (
     <div className="container">
       <header className="header">
-        <h1>Kija International Bank</h1>
+        <h1>Kija Bank</h1>
+        <h3>
+          Cash Total:{" " + "$"}
+          {accountList
+            .map((item) => item.amount)
+            .reduce((acc, curr) => acc + curr, 0)}
+        </h3>
+        <h3>Clients Total: {accountList.length}</h3>
       </header>
-      <Create setCreateAccount={setCreateAccount} />
+      <Create setCreateAccount={handleCreate} />
       <SearchBar
         searchTerm={searchTerm}
-        isEmpty={isEmpty}
+        isEmpty={filterEmpty}
         onSearchTermChange={setSearchTerm}
-        onIsEmptyChange={setIsEmpty}
+        onIsEmptyChange={setFilterEmpty}
       />
-      <AccountTable
+      <AccountList
         accountList={accountList}
         searchTerm={searchTerm}
-        onIsEmptyChange={setIsEmpty}
-        setDeleteAccount={setDeleteAccount}
-        isEmpty={isEmpty}
+        onIsEmptyChange={setFilterEmpty}
+        setDeleteAccount={handleDeleteById}
+        setEditAccount={handleEdit}
+        isEmpty={filterEmpty}
       />
     </div>
   );

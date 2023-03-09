@@ -1,9 +1,13 @@
 import { v4 as uuidv4 } from "uuid";
-
-const write = (key, data) => {
+/**
+ * @typedef {{ id: string, name: string, surname: string, amount: number }} Account
+ * @type {(key: string, data: Account) => void}
+ */
+export const write = (key, data) => {
   localStorage.setItem(key, JSON.stringify(data));
 };
 
+/** @returns {Account[]} */
 export const read = (key) => {
   const data = localStorage.getItem(key);
   if (null === data) {
@@ -25,10 +29,14 @@ export const destroy = (key, id) => {
   write(key, deletedData);
 };
 
-export const edit = (key, data, id) => {
+/**
+ * @param {string} key
+ * @param {Account} data
+ */
+export const edit = (key, data) => {
   const allData = read(key);
-  const editedData = allData.map((d) =>
-    id === d.id ? { ...d, ...data, id: id } : { ...d }
+  const editedData = allData.map((item) =>
+    data.id === item.id ? { ...item, ...data } : item
   );
   write(key, editedData);
 };
